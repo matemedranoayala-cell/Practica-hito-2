@@ -58,7 +58,8 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     public void eliminarFisico(Long id) {
-        throw new UnsupportedOperationException("La eliminación física se implementa en la rama fis");
+        Persona persona = buscar(id);
+        personaRepository.delete(persona);
     }
 
     protected Persona buscar(Long id) {
