@@ -32,4 +32,10 @@ public class PersonaController {
     public ResponseEntity<List<PersonaDto>> listarDetalle() {
         return ResponseEntity.ok(personaService.listarDetalle());
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PersonaDto> editar(
+            @PathVariable Long id, @RequestBody PersonaDto personaDto) {
+        return ResponseEntity.ok(personaService.editar(id, personaDto));
+    }
 }
