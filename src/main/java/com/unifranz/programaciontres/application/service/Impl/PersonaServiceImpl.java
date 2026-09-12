@@ -53,7 +53,12 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     public PersonaDto eliminar(Long id) {
-        throw new UnsupportedOperationException("La eliminación lógica se implementa en la rama log");
+        Persona persona = buscar(id);
+        persona.setEliminado(true);
+        Persona eliminada = personaRepository.save(persona);
+        return new PersonaDto(
+                eliminada.getId(), eliminada.getNombre(),
+                eliminada.getEmail(), eliminada.isEliminado());
     }
 
     @Override

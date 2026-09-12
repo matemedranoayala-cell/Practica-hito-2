@@ -14,4 +14,10 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Map.of("mensaje", exception.getMessage()));
     }
+
+    @ExceptionHandler(PersonaEliminadaException.class)
+    public ResponseEntity<Map<String, String>> manejarEliminada(PersonaEliminadaException exception) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Map.of("mensaje", exception.getMessage()));
+    }
 }

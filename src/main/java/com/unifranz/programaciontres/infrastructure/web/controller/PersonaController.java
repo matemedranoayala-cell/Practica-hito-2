@@ -32,4 +32,9 @@ public class PersonaController {
     public ResponseEntity<List<PersonaDto>> listarDetalle() {
         return ResponseEntity.ok(personaService.listarDetalle());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<PersonaDto> eliminar(@PathVariable Long id) {
+        return ResponseEntity.ok(personaService.eliminar(id));
+    }
 }
