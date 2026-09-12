@@ -41,6 +41,15 @@ public class PersonaServiceImpl implements PersonaService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<PersonaDto> listarDetalle() {
+        return personaRepository.findAll()
+                .stream()
+                .map(persona -> new PersonaDto(
+                        persona.getId(), persona.getNombre(), persona.getEmail(), persona.isEliminado()))
+                .collect(Collectors.toList());
+    }
+
     private PersonaResumenDto resumen(Persona persona) {
         return new PersonaResumenDto(persona.getId(), persona.getNombre(), persona.getEmail());
     }

@@ -8,4 +8,5 @@ import java.util.List;
 public interface PersonaService {
     PersonaResumenDto guardar(PersonaDto personaDto);
     List<PersonaResumenDto> listar(Long id, String nombre, String email);
+    List<PersonaDto> listarDetalle();
 }

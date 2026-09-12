@@ -28,4 +28,8 @@ public class PersonaController {
         return ResponseEntity.ok(personaService.listar(id, nombre, email));
     }
 
+    @GetMapping("/detalle")
+    public ResponseEntity<List<PersonaDto>> listarDetalle() {
+        return ResponseEntity.ok(personaService.listarDetalle());
+    }
 }
