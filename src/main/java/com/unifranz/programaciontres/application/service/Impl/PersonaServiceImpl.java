@@ -66,6 +66,22 @@ public class PersonaServiceImpl implements PersonaService {
                 actualizada.getEmail(), actualizada.isEliminado());
     }
 
+    @Override
+    public PersonaDto eliminar(Long id) {
+        Persona persona = buscar(id);
+        persona.setEliminado(true);
+        Persona eliminada = personaRepository.save(persona);
+        return new PersonaDto(
+                eliminada.getId(), eliminada.getNombre(),
+                eliminada.getEmail(), eliminada.isEliminado());
+    }
+
+    @Override
+    public void eliminarFisico(Long id) {
+        Persona persona = buscar(id);
+        personaRepository.delete(persona);
+    }
+
     private Persona buscar(Long id) {
         return personaRepository.findById(id)
                 .orElseThrow(() -> new PersonaNoEncontradaException(

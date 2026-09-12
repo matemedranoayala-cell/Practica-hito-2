@@ -38,4 +38,15 @@ public class PersonaController {
             @PathVariable Long id, @RequestBody PersonaDto personaDto) {
         return ResponseEntity.ok(personaService.editar(id, personaDto));
     }
+
+    @DeleteMapping("/{id}/fisico")
+    public ResponseEntity<Void> eliminarFisico(@PathVariable Long id) {
+        personaService.eliminarFisico(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<PersonaDto> eliminar(@PathVariable Long id) {
+        return ResponseEntity.ok(personaService.eliminar(id));
+    }
 }
