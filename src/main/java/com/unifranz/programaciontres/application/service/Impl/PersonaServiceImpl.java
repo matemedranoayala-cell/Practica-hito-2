@@ -5,6 +5,7 @@ import com.unifranz.programaciontres.application.dto.PersonaResumenDto;
 import com.unifranz.programaciontres.application.service.PersonaService;
 import com.unifranz.programaciontres.domain.Persona;
 import com.unifranz.programaciontres.infrastructure.Persistence.PersonaRepository;
+import com.unifranz.programaciontres.infrastructure.web.exception.PersonaNoEncontradaException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,22 @@ public class PersonaServiceImpl implements PersonaService {
                 .map(persona -> new PersonaDto(
                         persona.getId(), persona.getNombre(), persona.getEmail(), persona.isEliminado()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public PersonaDto eliminar(Long id) {
+        throw new UnsupportedOperationException("La eliminación lógica se implementa en la rama log");
+    }
+
+    @Override
+    public void eliminarFisico(Long id) {
+        throw new UnsupportedOperationException("La eliminación física se implementa en la rama fis");
+    }
+
+    protected Persona buscar(Long id) {
+        return personaRepository.findById(id)
+                .orElseThrow(() -> new PersonaNoEncontradaException(
+                        "No existe una persona con el id " + id));
     }
 
     private PersonaResumenDto resumen(Persona persona) {

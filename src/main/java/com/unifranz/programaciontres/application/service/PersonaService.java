@@ -9,4 +9,6 @@ public interface PersonaService {
     PersonaResumenDto guardar(PersonaDto personaDto);
     List<PersonaResumenDto> listar(Long id, String nombre, String email);
     List<PersonaDto> listarDetalle();
+    PersonaDto eliminar(Long id);
+    void eliminarFisico(Long id);
 }
